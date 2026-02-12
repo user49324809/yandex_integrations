@@ -25,3 +25,4 @@ EXPOSE 8080
 # Запуск Laravel
 CMD php artisan serve --host=0.0.0.0 --port=8080
 RUN php artisan migrate --force
+RUN php artisan config:clear
