@@ -12,5 +12,10 @@ Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
 
-Route::get('/api/reviews', [IntegrationController::class, 'reviews']);
+Route::get('/reviews', function () {
+    return response()->json(['status' => 'OK']);
+});
+Route::get('/debug-check', function () {
+    return 'ROUTE WORKS';
+});
 Route::post('/integration', [IntegrationController::class, 'store']);
