@@ -28,5 +28,3 @@ Route::get('/reviews-page', function () {
 
 Route::post('/integration', [IntegrationController::class, 'store']);
 Route::get('/reviews', [IntegrationController::class, 'reviews']);
-
-require __DIR__.'/auth.php';
