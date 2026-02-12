@@ -13,15 +13,19 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
+
 Route::get('/reviews-page', function () {
     return Inertia::render('Reviews');
 });
+
 Route::post('/integration', [IntegrationController::class, 'store']);
 Route::get('/reviews', [IntegrationController::class, 'reviews']);
 
