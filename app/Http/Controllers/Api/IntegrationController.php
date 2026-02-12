@@ -10,7 +10,7 @@ use App\Services\YandexService;
 
 class IntegrationController extends Controller
 {
-    /*public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'yandex_url' => 'required|url'
@@ -27,8 +27,8 @@ class IntegrationController extends Controller
             ]
         );
 
-        //return response()->json($integration);
-    }*/
+        return response()->json($integration);
+    }
     public function reviews(YandexService $yandexService)
     {
         $companyInfo = $yandexService->getCompanyInfo('123456');
