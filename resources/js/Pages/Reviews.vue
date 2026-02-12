@@ -1,10 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-
 const company = ref(null)
 const reviews = ref([])
-
 onMounted(async () => {
     const response = await axios.get('/reviews')
     company.value = response.data.company
@@ -15,17 +13,13 @@ const formatDate = (dateString) => {
     return date.toLocaleDateString('ru-RU')
 }
 </script>
-
 <template>
     <div class="max-w-6xl mx-auto p-6">
         <h1 class="text-2xl font-bold mb-6">Отзывы компании</h1>
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Левая часть — отзывы -->
         <div class="lg:col-span-2 space-y-4">
-            <div 
-            v-for="review in reviews" 
+            <div
+            v-for="review in reviews"
             :key="review.date + review.author"
             class="bg-white rounded-xl shadow-md p-5"
             >
@@ -36,11 +30,9 @@ const formatDate = (dateString) => {
                     {{ formatDate(review.date) }}
                 </p>
                 </div>
-
-                <!-- Звёзды -->
                 <div class="flex">
-                <span 
-                    v-for="i in 5" 
+                <span
+                    v-for="i in 5"
                     :key="i"
                     class="text-yellow-400 text-lg"
                 >
@@ -55,8 +47,6 @@ const formatDate = (dateString) => {
             </p>
             </div>
         </div>
-
-        <!-- Правая часть — общий рейтинг -->
         <div v-if="company" class="bg-white rounded-xl shadow-md p-6 h-fit">
             <div class="text-center">
             <p class="text-5xl font-bold mb-2">
@@ -64,8 +54,8 @@ const formatDate = (dateString) => {
             </p>
 
             <div class="flex justify-center mb-2">
-                <span 
-                v-for="i in 5" 
+                <span
+                v-for="i in 5"
                 :key="i"
                 class="text-yellow-400 text-xl"
                 >
@@ -73,13 +63,11 @@ const formatDate = (dateString) => {
                 <span v-else class="text-gray-300">★</span>
                 </span>
             </div>
-
             <p class="text-gray-500">
                 Всего отзывов: {{ company.reviews_count }}
             </p>
             </div>
         </div>
-
         </div>
     </div>
 </template>
