@@ -21,13 +21,13 @@ class IntegrationController extends Controller
 
         $integration = Integration::updateOrCreate(
             //['user_id' => auth()->id()],
-            [
+            /*[
                 'yandex_url' => $request->yandex_url,
                 'company_id' => $companyId
-            ]
+            ]*/
         );
 
-        return response()->json($integration);
+        //return response()->json($integration);
     }
     public function reviews(YandexService $yandexService)
     {
