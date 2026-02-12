@@ -28,3 +28,11 @@ RUN php artisan migrate --force
 RUN php artisan config:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
+# Установка Node
+RUN apt-get update && apt-get install -y nodejs npm
+
+# Установка зависимостей
+RUN npm install
+
+# Сборка фронта
+RUN npm run build
