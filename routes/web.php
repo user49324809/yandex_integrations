@@ -13,20 +13,16 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/settings', function () {
-        return Inertia::render('Settings');
-    })->name('settings');
-    Route::get('/reviews-page', function () {
-        return Inertia::render('Reviews');
-    })->name('reviews.page');
-    Route::post('/integration', [IntegrationController::class, 'store']);
-    Route::get('/reviews', [IntegrationController::class, 'reviews']);
+Route::get('/settings', function () {
+    return Inertia::render('Settings');
 });
+Route::get('/reviews-page', function () {
+    return Inertia::render('Reviews');
+});
+Route::post('/integration', [IntegrationController::class, 'store']);
+Route::get('/reviews', [IntegrationController::class, 'reviews']);
 
 require __DIR__.'/auth.php';
