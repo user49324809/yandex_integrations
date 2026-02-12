@@ -11,7 +11,6 @@ Route::get('/', function () {
 Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
-
 Route::get('/reviews', function () {
     return response()->json(['status' => 'OK']);
 });
