@@ -10,6 +10,23 @@ use App\Services\YandexService;
 
 class IntegrationController extends Controller
 {
+    public function reviews(YandexService $yandexService)
+    {
+        return response()->json([
+            'company' => [
+                'rating' => 4.7,
+                'reviews_count' => 128,
+            ],
+            'reviews' => [
+                [
+                    'author' => 'Иван Петров',
+                    'rating' => 5,
+                    'text' => 'Отличная компания!',
+                    'date' => '2024-01-15',
+                ],
+            ],
+        ]);
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -29,7 +46,7 @@ class IntegrationController extends Controller
 
         return response()->json($integration);
     }
-    public function reviews(YandexService $yandexService)
+    /*public function reviews(YandexService $yandexService)
     {
         $companyInfo = $yandexService->getCompanyInfo('123456');
         $reviews = $yandexService->getReviews('123456');
@@ -38,5 +55,5 @@ class IntegrationController extends Controller
             'company' => $companyInfo,
             'reviews' => $reviews
         ]);
-    }
+    }*/
 }
