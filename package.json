@@ -6,18 +6,8 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.0",
-    "laravel-vite-plugin": "^1.0.0",
-    "vite": "^5.0.0"
-  },
-  "dependencies": {
-    "vue": "^3.4.0",
-    "@inertiajs/vue3": "^1.0.0",
-    "@inertiajs/inertia": "^1.0.0",
-    "axios": "^1.6.0"
-  },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build"
   },
@@ -25,10 +15,17 @@
     "type": "git",
     "url": "git+https://github.com/user49324809/yandex_integrations.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/user49324809/yandex_integrations/issues"
   },
-  "homepage": "https://github.com/user49324809/yandex_integrations#readme"
+  "homepage": "https://github.com/user49324809/yandex_integrations#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
 }
