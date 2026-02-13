@@ -8,17 +8,13 @@ Route::get('/', function () {
     return Inertia::render('Reviews');
 });
 
-Route::get('/settings', function () {
-    return Inertia::render('Settings');
-});
-Route::get('/reviews', function () {
-    return Inertia::render('Reviews');
-});
-Route::get('/debug-check', function () {
-    return 'ROUTE WORKS';
-});
-Route::get('/test-route', function () {
-    return 'WORKS';
+Route::middleware(['auth'])->group(function () {
+    Route::get('/reviews', function () {
+        return Inertia::render('Reviews');
+    });
+    Route::get('/settings', function () {
+        return Inertia::render('Settings');
+    });
 });
 Route::post('/integration', [IntegrationController::class, 'store']);
 Route::get('/reviews-data', function () {
