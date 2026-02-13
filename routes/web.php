@@ -24,5 +24,8 @@ Route::middleware(['auth'])->group(function () {
             'reviews' => $service->getReviews('123'),
         ]);
     });
-
+    Route::get('/dashboard', function () {
+        return Inertia::render('Reviews');
+    })->middleware(['auth'])->name('dashboard');
+    
 require __DIR__.'/auth.php';
