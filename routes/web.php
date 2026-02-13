@@ -14,8 +14,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::get('/settings', function () {
         return Inertia::render('Settings');
-    });
-    Route::post('/integration', [IntegrationController::class, 'store']);
+    });  
+});
+Route::post('/integration', [IntegrationController::class, 'store']);
     Route::get('/reviews-data', function () {
         $service = new YandexService();
         return response()->json([
@@ -23,6 +24,5 @@ Route::middleware(['auth'])->group(function () {
             'reviews' => $service->getReviews('123'),
         ]);
     });
-});
 
 require __DIR__.'/auth.php';
