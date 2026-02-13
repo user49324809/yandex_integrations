@@ -5,7 +5,7 @@ const company = ref(null)
 const reviews = ref([])
 onMounted(async () => {
     await axios.get('/sanctum/csrf-cookie')
-    const response = await axios.get('/reviews')
+    const response = await axios.get('/reviews-data')
     company.value = response.data.company
     reviews.value = response.data.reviews
 })
