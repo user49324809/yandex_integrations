@@ -5,18 +5,18 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Reviews');
+    return redirect('/login');
 });
-
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Reviews');
+    })->name('dashboard');
     Route::get('/reviews', function () {
         return Inertia::render('Reviews');
     });
     Route::get('/settings', function () {
         return Inertia::render('Settings');
     });
-    Route::post('/integration', [IntegrationController::class, 'store']);
-});
     Route::get('/reviews-data', function () {
         $service = new YandexService();
         return response()->json([
@@ -24,8 +24,7 @@ Route::middleware(['auth'])->group(function () {
             'reviews' => $service->getReviews('123'),
         ]);
     });
-    Route::get('/dashboard', function () {
-        return Inertia::render('Reviews');
-    })->middleware(['auth'])->name('dashboard');
-    
+    Route::post('/integration', [IntegrationController::class, 'store']);
+});
+
 require __DIR__.'/auth.php';
