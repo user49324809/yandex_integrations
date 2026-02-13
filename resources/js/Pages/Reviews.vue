@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+
 const company = ref(null)
 const reviews = ref([])
 onMounted(async () => {
@@ -12,6 +13,10 @@ onMounted(async () => {
 const formatDate = (dateString) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('ru-RU')
+}
+const selectedRating = ref(0)
+const setRating = (value) => {
+    selectedRating.value = value
 }
 </script>
 <template>
@@ -35,10 +40,18 @@ const formatDate = (dateString) => {
                 <span
                     v-for="i in 5"
                     :key="i"
-                    class="text-yellow-400 text-lg"
+                    @click="setRating(i)"
+                    @mouseover="hoverRating = i"
+                    @mouseleave="hoverRating = 0"
+                    class="text-2xl cursor-pointer"
                 >
-                    <span v-if="i <= review.rating">★</span>
-                    <span v-else class="text-gray-300">★</span>
+                    <span
+                        :class="i <= (hoverRating || selectedRating)
+                        ? 'text-yellow-400'
+                        : 'text-gray-300'"
+                    >
+                        ★
+                    </span>
                 </span>
                 </div>
             </div>
