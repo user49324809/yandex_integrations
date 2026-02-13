@@ -31,8 +31,18 @@ class IntegrationController extends Controller
     }
     public function reviews(YandexService $yandexService)
     {
-        $companyInfo = $yandexService->getCompanyInfo('123456');
-        $reviews = $yandexService->getReviews('123456');
+        $integration = Integration::where('user_id', auth()->id())->first();
+
+        if (!$integration) {
+            return response()->json([
+                'error' => 'Integration not found'
+            ], 404);
+        }
+
+        $companyId = $integration->company_id;
+
+        $companyInfo = $yandexService->getCompanyInfo($companyId);
+        $reviews = $yandexService->getReviews($companyId);
 
         return response()->json([
             'company' => $companyInfo,
