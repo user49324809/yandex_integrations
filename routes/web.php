@@ -3,6 +3,7 @@ use App\Services\YandexService;
 use App\Http\Controllers\Api\IntegrationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Auth;
 
 Route::get('/', function () {
     return Inertia::render('Reviews');

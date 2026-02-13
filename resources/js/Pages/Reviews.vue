@@ -55,7 +55,6 @@ const setRating = (value) => {
                 </span>
                 </div>
             </div>
-
             <p class="text-gray-700 leading-relaxed">
                 {{ review.text }}
             </p>
@@ -66,7 +65,6 @@ const setRating = (value) => {
             <p class="text-5xl font-bold mb-2">
                 {{ company.rating }}
             </p>
-
             <div class="flex justify-center mb-2">
                 <span
                 v-for="i in 5"

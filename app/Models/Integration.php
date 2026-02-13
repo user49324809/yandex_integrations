@@ -10,5 +10,6 @@ class Integration extends Model
         'user_id',
         'yandex_url',
         'company_id',
+        'test_field'
     ];
 }
