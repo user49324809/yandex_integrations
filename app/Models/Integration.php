@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Integration extends Model
 {
-    /*protected $fillable = [
+    protected $fillable = [
         'user_id',
         'yandex_url',
         'company_id'
-    ];*/
-    protected $guarded = [];
+    ];
 }
