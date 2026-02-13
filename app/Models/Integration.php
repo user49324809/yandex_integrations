@@ -12,4 +12,5 @@ class Integration extends Model
         'company_id',
         'test_field'
     ];
+    protected $guarded = [];
 }
