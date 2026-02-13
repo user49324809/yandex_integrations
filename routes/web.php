@@ -12,7 +12,7 @@ Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
 Route::get('/reviews', function () {
-    return response()->json(['status' => 'OK']);
+    return Inertia::render('Reviews');
 });
 Route::get('/debug-check', function () {
     return 'ROUTE WORKS';
