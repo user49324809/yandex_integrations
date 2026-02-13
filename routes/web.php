@@ -7,6 +7,9 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return redirect('/login');
 });
+Route::post('/', function () {
+    return redirect('/logout');
+});
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Reviews');

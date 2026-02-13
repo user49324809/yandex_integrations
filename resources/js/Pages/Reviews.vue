@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { router } from '@inertiajs/vue3'
 
 const company = ref(null)
 const reviews = ref([])
@@ -21,6 +22,9 @@ const setRating = (value) => {
 </script>
 <template>
     <div class="max-w-6xl mx-auto p-6">
+        <button @click="router.post('/logout')">
+            Выйти
+        </button>
         <h1 class="text-2xl font-bold mb-6">Отзывы компании</h1>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 space-y-4">

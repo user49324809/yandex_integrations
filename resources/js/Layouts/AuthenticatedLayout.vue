@@ -6,7 +6,12 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3'
+const page = usePage()
 
+const logout = () => {
+    router.post('/logout')
+}
 const showingNavigationDropdown = ref(false);
 </script>
 
