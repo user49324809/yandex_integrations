@@ -1,13 +1,12 @@
 {
   "name": "yandex-integration",
   "version": "1.0.0",
-  "description": "Тестовое задание.",
+  "description": "Demo dashboard for connecting a Yandex Maps company and viewing reviews.",
   "main": "postcss.config.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build"
   },
@@ -25,7 +24,6 @@
   "dependencies": {
     "@inertiajs/vue3": "^2.3.14",
     "bootstrap": "^5.3.8",
-    "tailwind": "^4.0.0",
     "vue": "^3.5.28",
     "ziggy-js": "^2.6.0"
   },
