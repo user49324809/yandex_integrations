@@ -5,19 +5,22 @@ import { router } from '@inertiajs/vue3'
 
 const company = ref(null)
 const reviews = ref([])
+const loading = ref(true)
+const error = ref('')
 onMounted(async () => {
-    await axios.get('/sanctum/csrf-cookie')
-    const response = await axios.get('/reviews-data')
-    company.value = response.data.company
-    reviews.value = response.data.reviews
+    try {
+        const response = await axios.get('/reviews-data')
+        company.value = response.data.company
+        reviews.value = response.data.reviews
+    } catch (e) {
+        error.value = e.response?.data?.error ?? 'Не удалось загрузить отзывы.'
+    } finally {
+        loading.value = false
+    }
 })
 const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('ru-RU')
-}
-const selectedRating = ref(0)
-const setRating = (value) => {
-    selectedRating.value = value
+    const [year, month, day] = dateString.split('-')
+    return `${day}.${month}.${year}`
 }
 </script>
 <template>
@@ -26,7 +29,12 @@ const setRating = (value) => {
             Выйти
         </button>
         <h1 class="text-2xl font-bold mb-6">Отзывы компании</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <p v-if="loading" class="text-gray-500">Загрузка отзывов…</p>
+        <div v-else-if="error" class="rounded-lg bg-red-50 p-4 text-red-700">
+            {{ error }}
+            <a href="/settings" class="ml-2 underline">Открыть настройки</a>
+        </div>
+        <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 space-y-4">
             <div
             v-for="review in reviews"
@@ -44,13 +52,10 @@ const setRating = (value) => {
                 <span
                     v-for="i in 5"
                     :key="i"
-                    @click="setRating(i)"
-                    @mouseover="hoverRating = i"
-                    @mouseleave="hoverRating = 0"
-                    class="text-2xl cursor-pointer"
+                    class="text-2xl"
                 >
                     <span
-                        :class="i <= (hoverRating || selectedRating)
+                        :class="i <= review.rating
                         ? 'text-yellow-400'
                         : 'text-gray-300'"
                     >
