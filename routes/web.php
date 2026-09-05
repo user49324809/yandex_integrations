@@ -1,5 +1,4 @@
 <?php
-use App\Services\YandexService;
 use App\Http\Controllers\Api\IntegrationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,17 +16,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reviews', function () {
         return Inertia::render('Reviews');
     });
-    Route::get('/settings', function () {
-        return Inertia::render('Settings');
-    });
-    Route::get('/reviews-data', function () {
-        $service = new YandexService();
-        return response()->json([
-            'company' => $service->getCompanyInfo('123'),
-            'reviews' => $service->getReviews('123'),
-        ]);
-    });
-    Route::post('/integration', [IntegrationController::class, 'store']);
+    Route::get('/settings', [IntegrationController::class, 'settings'])->name('integration.settings');
+    Route::get('/reviews-data', [IntegrationController::class, 'reviews'])->name('integration.reviews');
+    Route::post('/integration', [IntegrationController::class, 'store'])->name('integration.store');
 });
 
 require __DIR__.'/auth.php';
